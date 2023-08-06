@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const readSuggestionsFromFile = require('./readSuggestionsFromFile');
+const WordsFileObj = require('./readSuggestionsFromFile');
 
 export async function GET(request: NextRequest) {
   const input = request.nextUrl.searchParams.get("input");
@@ -9,12 +9,14 @@ export async function GET(request: NextRequest) {
     suggestions: string[],
     isOk: boolean,
     errorMessage: any,
+    dbgFileSize: number,
   };
 
   const res: ResType = {
     suggestions: [],
     isOk: true,
     errorMessage: null,
+    dbgFileSize: 0,
   };
 
   if (!input) {
@@ -30,7 +32,8 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    res.suggestions = await readSuggestionsFromFile(input);
+    res.suggestions = await WordsFileObj.readSuggestionsFromFile(input);
+    res.dbgFileSize = WordsFileObj.getFileSize();
   } catch (ex) {
     res.isOk = false;
     res.errorMessage = ex;
@@ -38,4 +41,14 @@ export async function GET(request: NextRequest) {
   }
 
   return NextResponse.json(res);
+}
+
+export async function getStaticProps() {
+  const wordsFileSize = WordsFileObj.getFileSize();
+
+  return {
+    props: {
+      wordsFileSize
+    },
+  }
 }

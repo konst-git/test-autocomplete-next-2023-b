@@ -1,10 +1,10 @@
 const fs = require('fs');
 const readline = require('readline');
 
-async function readSuggestions(prefix) {
-  const customPromise = new Promise((resolve, reject) => {
-    const filePath = 'priv/asset/wordlist.txt';
+const filePath = 'priv/asset/wordlist.txt';
 
+async function readSuggestionsFromFile(prefix) {
+  const customPromise = new Promise((resolve, reject) => {
     const fileStream = fs.createReadStream('./' + filePath);
     const rl = readline.createInterface({
         input: fileStream,
@@ -42,4 +42,14 @@ async function readSuggestions(prefix) {
   return customPromise;
 };
 
-module.exports = readSuggestions;
+function getFileSize() {
+debugger;
+  var stats = fs.statSync(filePath)
+  var fileSizeInBytes = stats.size;
+  // Convert the file size to megabytes (optional)
+  var fileSizeInMegabytes = fileSizeInBytes / (1024*1024);
+  return fileSizeInMegabytes;
+};
+
+module.exports.readSuggestionsFromFile = readSuggestionsFromFile;
+module.exports.getFileSize = getFileSize;
