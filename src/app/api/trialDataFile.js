@@ -7,3 +7,5 @@ aaa-line-5
 aaa-line-6
 aaa-line-7
 */
+
+module.exports = 'Something';
