@@ -34,7 +34,7 @@ export async function GET(request: NextRequest) {
 const temp_trialDataFile = require('./trialDataFile.js');
 console.log('temp_trialDataFile:', temp_trialDataFile);
 res.suggestions = temp_trialDataFile;
-return NextResponse.json(res);
+// return NextResponse.json(res);
 
   try {
     res.suggestions = await WordsFileObj.readSuggestionsFromFile(input);
