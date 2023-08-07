@@ -10,6 +10,10 @@ export default function Home() {
   );
 }
 
+/*
+Doesn't work, getting an error during the Build stage in the cloud:
+  "getStaticProps" is not supported in app/."
+
 export async function getStaticProps() {
   const wordsFileSize = WordsFileObj.getFileSize();
 
@@ -19,3 +23,4 @@ export async function getStaticProps() {
     },
   }
 }
+*/
