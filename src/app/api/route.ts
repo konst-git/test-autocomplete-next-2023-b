@@ -19,6 +19,11 @@ export async function GET(request: NextRequest) {
     dbgFileSize: 0,
   };
 
+const temp_trialDataFile = require('./trialDataFile.js');
+console.log('temp_trialDataFile:', temp_trialDataFile);
+res.suggestions = temp_trialDataFile;
+return NextResponse.json(res);
+
   if (!input) {
     res.isOk = false;
     res.errorMessage = "Problem: no input was provided";
@@ -39,10 +44,6 @@ export async function GET(request: NextRequest) {
     res.errorMessage = ex;
     console.log('app.get("/apiWords", error: ' + ex);
   }
-
-const temp_trialDataFile = require('./trialDataFile.js');
-console.log('temp_trialDataFile:', temp_trialDataFile);
-res.suggestions = temp_trialDataFile;
 
   return NextResponse.json(res);
 }
