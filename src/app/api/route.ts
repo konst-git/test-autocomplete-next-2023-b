@@ -19,11 +19,6 @@ export async function GET(request: NextRequest) {
     dbgFileSize: 0,
   };
 
-const temp_trialDataFile = require('./trialDataFile.js');
-console.log('temp_trialDataFile:', temp_trialDataFile);
-res.suggestions = temp_trialDataFile;
-return NextResponse.json(res);
-
   if (!input) {
     res.isOk = false;
     res.errorMessage = "Problem: no input was provided";
@@ -35,6 +30,11 @@ return NextResponse.json(res);
     res.errorMessage = "Problem: input size is too small, input.length: " + input.length;
     return NextResponse.json(res);
   }
+
+const temp_trialDataFile = require('./trialDataFile.js');
+console.log('temp_trialDataFile:', temp_trialDataFile);
+res.suggestions = temp_trialDataFile;
+return NextResponse.json(res);
 
   try {
     res.suggestions = await WordsFileObj.readSuggestionsFromFile(input);
