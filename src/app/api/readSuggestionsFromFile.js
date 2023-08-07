@@ -1,9 +1,6 @@
 const fs = require('fs');
 const readline = require('readline');
 
-const temp_trialDataFile = require('./trialDataFile.js');
-console.log('temp_trialDataFile:', temp_trialDataFile);
-
 //const filePath = 'priv/asset/wordlist.txt';
 const filePath = 'src/app/api/trialDataFile.js';
 

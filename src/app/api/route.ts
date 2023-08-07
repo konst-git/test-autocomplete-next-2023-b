@@ -40,5 +40,9 @@ export async function GET(request: NextRequest) {
     console.log('app.get("/apiWords", error: ' + ex);
   }
 
+const temp_trialDataFile = require('./trialDataFile.js');
+console.log('temp_trialDataFile:', temp_trialDataFile);
+res.suggestions = temp_trialDataFile;
+
   return NextResponse.json(res);
 }
