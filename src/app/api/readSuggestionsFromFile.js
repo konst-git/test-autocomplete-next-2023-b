@@ -1,8 +1,8 @@
 const fs = require('fs');
 const readline = require('readline');
 
-// const filePath = 'priv/asset/wordlist.txt';
-const filePath = 'src/app/api/trialDataFile2.js';
+const filePath = 'priv/asset/wordlist.txt';
+// const filePath = 'src/app/api/trialDataFile.js';
 
 async function readSuggestionsFromFile(prefix) {
   const customPromise = new Promise((resolve, reject) => {
